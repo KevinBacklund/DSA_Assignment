@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Game
 {
@@ -24,14 +26,16 @@ namespace Game
         }
 
         private static Cards    sm_instance;
+        private Stack<Card>     drawCards = new Stack<Card>();
+        private Stack<Card>     discardCards = new Stack<Card>();
 
         #region Properties
 
         // TODO: Create and store a Stack and return here
-        public Stack<Card> DrawCards => throw new System.NotImplementedException();
+        public Stack<Card> DrawCards => drawCards;
 
         // TODO: Create and store a Stack and return here
-        public Stack<Card> DiscardCards => throw new System.NotImplementedException();
+        public Stack<Card> DiscardCards => discardCards;
 
         public static Cards Instance => sm_instance;
 
@@ -92,14 +96,14 @@ namespace Game
         {
             // TODO: get the next card on the DrawCards stack and return it
             // (removing it from the stack in the process)
-            throw new System.NotImplementedException();
+            return DrawCards.Pop();
         }
 
         public void DiscardCard(Card card)
         {
             // TODO: push the card being passed in to this function
             // on the DiscardStack
-            throw new System.NotImplementedException();
+            DiscardCards.Push(card);
         }
 
         public void ShuffleDeck()
@@ -109,7 +113,28 @@ namespace Game
             // 2. Shuffle the new list by randomly swapping elements in the list 100 times
             // 3. Clear the DiscardCards stack
             // 4. Add all the Cards from your temporary (now shuffled) list into the DrawStack
-            throw new System.NotImplementedException();
+            List<Card> tempList = new List<Card>();
+            foreach (Card card in DiscardCards)
+            {
+                tempList.Add(card);
+            }
+            DiscardCards.Clear();
+            for (int i = 0; i < 100; i++)
+            {
+                int cardIndex1 = Random.Range(0, tempList.Count);
+                int cardIndex2 = Random.Range(0, tempList.Count);
+                while (cardIndex1 == cardIndex2)
+                {
+                    cardIndex2 = Random.Range(0, tempList.Count);
+                }
+                Card temp = tempList[cardIndex1];
+                tempList[cardIndex1] = tempList[cardIndex2];
+                tempList[cardIndex2] = temp;
+            }
+            foreach (Card card in tempList)
+            {
+                DrawCards.Push(card);
+            }
         }
     }
 }

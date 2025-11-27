@@ -337,6 +337,8 @@
 "Assets/Scripts/DSA/BinaryTree.cs"
 "Assets/Scripts/DSA/MathUtils.cs"
 "Assets/Scripts/DSA/QuickSort.cs"
+"Assets/Scripts/Game/Burning.cs"
+"Assets/Scripts/Game/BurningNodes.cs"
 "Assets/Scripts/Game/Cards.cs"
 "Assets/Scripts/Game/Cards/Card_Firewall.cs"
 "Assets/Scripts/Game/Cards/Card_Heal.cs"

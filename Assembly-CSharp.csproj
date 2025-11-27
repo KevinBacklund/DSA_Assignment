@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Game\Skeleton.cs" />
     <Compile Include="Assets\Scripts\UI\CardsWidget.cs" />
     <Compile Include="Assets\Scripts\DSA\BinarySearchTree.cs" />
+    <Compile Include="Assets\Scripts\Game\Burning.cs" />
     <Compile Include="Assets\Scripts\DSA\MathUtils.cs" />
     <Compile Include="Assets\Scripts\Game\Effects.cs" />
     <Compile Include="Assets\Scripts\Game\Cards\Card_LightningStrike.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\Game\Cards.cs" />
     <Compile Include="Assets\Scripts\Game\Unit.cs" />
     <Compile Include="Assets\Scripts\DSA\QuickSort.cs" />
+    <Compile Include="Assets\Scripts\Game\BurningNodes.cs" />
     <Compile Include="Assets\Scripts\UI\GameCanvas.cs" />
   </ItemGroup>
   <ItemGroup>

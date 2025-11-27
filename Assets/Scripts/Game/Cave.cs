@@ -9,6 +9,7 @@ namespace Game
     [RequireComponent(typeof(MeshRenderer))]
     public class Cave : MonoBehaviour
     {
+        public GameObject burningNodes;
         public class Node
         {
             private Vector2Int m_vCoord;

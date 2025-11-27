@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UI;
 using UnityEngine;
 
+
+/*
+I chose to use a list to manage the DOT effects on units, as it allows for multiple simultaneous effects, each with its own duration and behavior. 
+Since the duration of each effect can vary, the order of removal is not determined, making a list more suitable than a queue.
+And since the number of effects is relatively small, the performance impact of using a list should not be a problem.
+Also since we need to iterate through the all the effects each frame a difference in performance between a list and a different data structure should be small.
+*/
 namespace Game
 {
     [RequireComponent(typeof(MeshFilter))]
@@ -20,6 +27,7 @@ namespace Game
 
         public static List<Unit> AllUnits = new List<Unit>();
 
+        public List<DamageOverTime> damageOverTimeEffects = new List<DamageOverTime>();
         #region Properties
 
         public Cave.Node Node
@@ -125,6 +133,22 @@ namespace Game
             m_health.SetFloat("_Amount", Mathf.Clamp01(m_iHealth / (float)MaxHealth));
             GetComponent<MeshFilter>().sharedMesh = sm_unitMeshes[MeshIndex];
             GetComponent<MeshRenderer>().sharedMaterials = new Material[] { sm_unitMaterial, m_health };
+        }
+
+        protected virtual void Update()
+        {
+            for(int i = 0; i < damageOverTimeEffects.Count; i++)
+            {
+                DamageOverTime dot = damageOverTimeEffects[i];
+                if (dot.IsDone)
+                {
+                    damageOverTimeEffects.Remove(dot);
+                }
+                else
+                {
+                    dot.Update(this);
+                }
+            }
         }
 
         public void TakeDamage(int iAmount)
