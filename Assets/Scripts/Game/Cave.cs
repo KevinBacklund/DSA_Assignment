@@ -188,5 +188,25 @@ namespace Game
             }
             return bestNode;
         }
+        public List<Node> GetNeighbours(Node node)
+        {
+            List<Node> neighbors = new List<Node>();
+            Vector2Int[] directions = new Vector2Int[]
+            {
+                new Vector2Int(1, 0),
+                new Vector2Int(-1, 0),
+                new Vector2Int(0, 1),
+                new Vector2Int(0, -1)
+            };
+            foreach (var dir in directions)
+            {
+                Node neighbor = this[node.Coord.x + dir.x, node.Coord.y + dir.y];
+                if (neighbor != null)
+                {
+                    neighbors.Add(neighbor);
+                }
+            }
+            return neighbors;
+        }
     }
 }

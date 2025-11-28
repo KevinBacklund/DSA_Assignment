@@ -65,6 +65,11 @@ namespace Game
 
             Queue<Cave.Node> affectedNodes = CalculateNodes(vMouseCoord);
             List<(Vector2Int, Color32)> result = new List<(Vector2Int, Color32)>();
+            if (affectedNodes == null)
+            {
+                result.Add((vMouseCoord, sm_fireColor));
+                return result;
+            }
             foreach (Cave.Node node in affectedNodes)
             {
                 result.Add((node.Coord, sm_fireColor));

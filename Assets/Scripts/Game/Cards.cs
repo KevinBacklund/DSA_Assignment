@@ -123,10 +123,12 @@ namespace Game
             {
                 int cardIndex1 = Random.Range(0, tempList.Count);
                 int cardIndex2 = Random.Range(0, tempList.Count);
+
                 while (cardIndex1 == cardIndex2)
                 {
                     cardIndex2 = Random.Range(0, tempList.Count);
                 }
+
                 Card temp = tempList[cardIndex1];
                 tempList[cardIndex1] = tempList[cardIndex2];
                 tempList[cardIndex2] = temp;

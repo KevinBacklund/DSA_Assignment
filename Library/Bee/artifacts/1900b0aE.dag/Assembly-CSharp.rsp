@@ -340,6 +340,7 @@
 "Assets/Scripts/Game/Burning.cs"
 "Assets/Scripts/Game/BurningNodes.cs"
 "Assets/Scripts/Game/Cards.cs"
+"Assets/Scripts/Game/Cards/Card_ChainLightning.cs"
 "Assets/Scripts/Game/Cards/Card_Firewall.cs"
 "Assets/Scripts/Game/Cards/Card_Heal.cs"
 "Assets/Scripts/Game/Cards/Card_LightningStrike.cs"
