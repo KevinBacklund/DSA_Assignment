@@ -16,6 +16,7 @@ namespace Game
             {
                 public Cave.Node value;
                 public List<Node> children;
+                public int depth;
             }
             public Node root;
         }
@@ -34,9 +35,10 @@ namespace Game
         protected Queue<Cave.Node> CalculateNodes(Vector2Int vMouseCoord)
         {
             Queue<Cave.Node> result = new();
-            Tree chainlightning = new();
-            chainlightning.root.value = Cave.Instance[vMouseCoord];
-            FindChildren(chainlightning.root);
+            Tree lightningTree = new();
+            lightningTree.root.value = Cave.Instance[vMouseCoord];
+            lightningTree.root.depth = 0;
+            FindChildren(lightningTree.root);
 
             return result;
         }
@@ -50,16 +52,20 @@ namespace Game
             {
                 Cave.Node current = open.Dequeue();
                 closed.Add(current);
+                int childCount = 0;
                 foreach (Cave.Node neighbour in Cave.Instance.GetNeighbours(current)) 
                 {
+
                     if (!closed.Contains(neighbour) && !open.Contains(neighbour))
                     {
                         if (neighbour.Coord.x < current.Coord.x + 2 && neighbour.Coord.y < current.Coord.y + 2)
                         {
-                            if (neighbour.Unit != null)
+                            if (neighbour.Unit != null && childCount < 3)
                             {
+                                childCount++;
                                 Tree.Node childNode = new Tree.Node();
                                 childNode.value = neighbour;
+                                childNode.depth = node.depth;
                                 node.children.Add(childNode);
                             }
                             open.Enqueue(neighbour);
